@@ -5,28 +5,28 @@ public class UIManager : BSingleton<UIManager>
 {
     const string PATH_UI = "UI/";
 
-    public static T EnableUI<T>() where T : UIBaseType
+    public static T EnableUI<T>() where T : BUIBaseType
     {
         T compt = GetUI<T>();
         if(!compt.gameObject.activeSelf)
-            compt.GetComponent<UIBaseType>().Enable();
+            compt.GetComponent<BUIBaseType>().Enable();
         return compt;
     }
 
-    public static T DisableUI<T>() where T : UIBaseType
+    public static T DisableUI<T>() where T : BUIBaseType
     {
         T compt = GetUI<T>();
         if (compt.gameObject.activeSelf)
-            compt.GetComponent<UIBaseType>().Disable();
+            compt.GetComponent<BUIBaseType>().Disable();
         return compt;
     }
 
-    public static void  DestoryUI<T>() where T : UIBaseType
+    public static void  DestoryUI<T>() where T : BUIBaseType
     {
         Destroy(GetUI<T>().gameObject);
     }
 
-    public static T LoadUI<T>() where T : UIBaseType
+    public static T LoadUI<T>() where T : BUIBaseType
     {
         try
         {
@@ -40,7 +40,7 @@ public class UIManager : BSingleton<UIManager>
         }
     }
 
-    public static T GetUI<T>() where T : UIBaseType
+    public static T GetUI<T>() where T : BUIBaseType
     {
         return Instance.GetComponentInChildren<T>(true);
     }

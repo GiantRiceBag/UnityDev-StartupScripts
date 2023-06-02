@@ -1,17 +1,21 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class Test : MonoBehaviour
 {
+    [SerializeField] Button btn;
+    [SerializeField] ObjectPool pool;
     void Start()
     {
-        BackdropManager.Instance.enabled = true;
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
+    
 }

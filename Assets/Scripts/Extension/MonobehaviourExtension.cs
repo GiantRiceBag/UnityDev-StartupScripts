@@ -7,4 +7,13 @@ public static class MonobehaviourExtension
     {
         return new CoroutineHandler(mono, coroutine);
     }
+    public static CoroutineHandler RunCoroutine(this MonoBehaviour mono,System.Action action)
+    {
+        return new CoroutineHandler(mono, action);
+    }
+    public static IEnumerator AsEnumerator(this MonoBehaviour mono,System.Action action)
+    {
+        action?.Invoke();
+        yield break;
+    }
 }

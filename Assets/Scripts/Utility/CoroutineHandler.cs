@@ -12,10 +12,19 @@ public class CoroutineHandler : IEnumerator
     {
         mono.StartCoroutine(Wrap(coroutine));
     }
+    public CoroutineHandler(MonoBehaviour mono, System.Action action)
+    {
+        mono.StartCoroutine(Wrap(AsEnumerator(action)));
+    }
 
     IEnumerator Wrap(IEnumerator coroutine)
     {
         yield return coroutine;
         IsDone = true;
+    }
+    IEnumerator AsEnumerator(System.Action action)
+    {
+        action?.Invoke();
+        yield break;
     }
 }

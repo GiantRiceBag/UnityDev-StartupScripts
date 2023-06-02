@@ -10,7 +10,7 @@ public class BSingleton<T> : MonoBehaviour where T : Component
         get
         {
             instance = FindObjectOfType<T>();
-            if(instance == null)
+            if(instance is null)
             {
                 GameObject go = new GameObject(typeof(T).ToString(),typeof(T));
             }
@@ -28,7 +28,7 @@ public class BSingleton<T> : MonoBehaviour where T : Component
         if(instance is null)
         {
             instance = this as T;
-            DontDestroyOnLoad(gameObject);
+            //DontDestroyOnLoad(gameObject);
             enable = true;
         }
         else

@@ -13,6 +13,9 @@ public class ObjectPool : ScriptableObject
     [SerializeField] PoolType poolType;
     [ConditionalHide("poolType","Prefab")]
     [SerializeField] GameObject objectPrefab;
+    [Space]
+    [SerializeField] bool hidePoolContent = true;
+    public bool HidePoolContent => hidePoolContent;
 
     const int SIZE_POOL_INITIAL = 20;
     const int SIZE_POOL_MAX = 100;
@@ -21,8 +24,10 @@ public class ObjectPool : ScriptableObject
 
     public void Collect(GameObject content)
     {
-        content.SetActive(false);
+        if (objectQueue.Contains(content))
+            return;
 
+        content.SetActive(false);
         if (objectQueue.Count > SIZE_POOL_MAX)
             Destroy(content);
         else
@@ -36,6 +41,7 @@ public class ObjectPool : ScriptableObject
             if (!GenerateObject()) { Debug.LogError("Please reference a GameObject for objectPrefab"); return null; }
         }
 
+        objectQueue.Peek().GetComponent<PoolContent>().TargetScene = targetScene;
         objectQueue.Peek().SetActive(true);
         return objectQueue.Dequeue();
     }

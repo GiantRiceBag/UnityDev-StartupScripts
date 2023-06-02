@@ -65,7 +65,7 @@ public class AudioUnit : MonoBehaviour
     }
 #endif
 
-    void UpdateAudioType(AudioType newType)
+    public void UpdateAudioType(AudioType newType)
     {
         switch (audioType)
         {
