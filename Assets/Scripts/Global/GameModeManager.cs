@@ -20,14 +20,14 @@ public class GameModeManager : BSingleton<GameModeManager>
             yield break;
 
         isSwitching = true;
-        yield return App.backdropService.Require();
+        yield return App.BackdropService.Require();
 
         if (currentMode is not null)
             yield return currentMode.OnEnd();
         currentMode = newMode;
         yield return currentMode.OnStart();
 
-        yield return App.backdropService.Release();
+        yield return App.BackdropService.Release();
         isSwitching = false;
         onGameModeChanged?.Invoke();
     }

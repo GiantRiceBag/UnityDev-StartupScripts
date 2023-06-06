@@ -1,15 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.SceneManagement;
 using UnityEngine;
 
 public enum GameModeState
 {
     Idle = 0,
-    Running,
-    Ended
+    Started,
+    Ended,
+    Starting,
+    Ending
 }
 
-public class BGameMode : IGameMode
+public abstract class BGameMode : IGameMode
 {
     GameModeState modeState = GameModeState.Idle;
     public GameModeState ModeState => modeState;

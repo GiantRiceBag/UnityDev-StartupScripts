@@ -33,7 +33,7 @@ public class UIManager : BSingleton<UIManager>
             GameObject obj = Resources.Load(PATH_UI + typeof(T).ToString()) as GameObject;
             return obj.GetComponent<T>();
         }
-        catch(System.NullReferenceException e)
+        catch(System.Exception e)
         {
             Debug.LogError(e.ToString());
             return null;
